@@ -1,0 +1,96 @@
+﻿@model Books
+<div class="text-center">
+    <h1>Kitab məlumatlarını dəyiş</h1>
+</div>
+<div class="container">
+    <div>
+        <div class="body">
+            <form method="post" enctype="multipart/form-data">
+                <div class="form-group form-float">
+
+                    <label class="form-label">Kitabın adı  <span class="font-bold col-pink"></span></label>
+                    <div class="form-line">
+                        <input asp-for="Name" class="form-control">
+                    </div>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-float">
+
+                    <label class="form-label">Kitab haqqında<span class="font-bold col-pink"></span></label>
+                    <div class="form-line">
+                        <input asp-for="Description" class="form-control">
+                    </div>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+
+                <div class="form-group form-float">
+                    <label class="form-label">Yaranma Tarixi <span class="font-bold col-pink"></span></label>
+                    <div class="form-line">
+                        <input asp-for="CreateTime" class="form-control">
+                    </div>
+                    <span asp-validation-for="CreateTime" class="text-danger"></span>
+
+                </div>
+                <div class="form-group form-float">
+                    <p>
+                        <b>Kitabın Kategoriyası <span class="font-bold col-pink"></span></b>
+                    </p>
+                    <select class="selectpicker" name="CategoryId" id="CategoryId">
+                        @foreach (Categories category in ViewBag.Categories)
+                        {
+                            if (Model.BookAuthors.Any(x => x.Books.CategoriesId == category.Id))
+                            {
+                                <option selected value="@category.Id">@category.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@category.Id">@category.Name</option>
+                            }
+                        }
+                    </select>
+
+                </div>
+                <div class="form-group form-float">
+                    <p>
+                        <b>Yazıçılar <span class="font-bold col-pink"></span></b>
+                    </p>
+                    <select class="selectpicker" multiple name="AuthorsId[]">
+                        @foreach (Authors authors in ViewBag.Authors)
+                        {
+                                if (Model.BookAuthors.Any(x => x.AuthorsId == authors.Id))
+                                {
+                                    <option selected value="@authors.Id">@authors.Name</option>
+                                }
+
+                            
+                            else
+                            {
+                                <option value="@authors.Id">@authors.Name</option>
+                            }
+
+                        }
+                    </select>
+
+                </div>
+                <div class="form-group form-float">
+                    <label class="form-label">Yazıçının şəkili <span class="font-bold col-pink"></span></label>
+                    <div class="form-line">
+                        <input asp-for="BooksPhoto" class="form-control">
+                    </div>
+                    <span asp-validation-for="BooksPhoto" class="text-danger"></span>
+
+                </div>
+                <br>
+
+                <div class="text-center">
+                    <a asp-controller="Books" asp-action="Index" class="btn btn-primary">Geri qayıt</a>
+                    <button type="submit" class="btn btn-success">Yenilə</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>

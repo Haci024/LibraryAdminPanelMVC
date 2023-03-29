@@ -1,0 +1,67 @@
+﻿@model List<UserVM>
+
+<div class="container-fluid px-4">
+    <h1 class="text-center">Istifadəçilər</h1>
+  
+        <a asp-controller="Users" asp-action="Create" class="btn btn-outline-light">
+          <img src="~/assets/icons/icons8-create-64.png" style="width:40px;height:40px" alt="password" />
+        </a>
+    
+
+    <div class="card mb-4">
+
+        <div class="card-body">
+            <table id="datatablesSimple">
+
+
+                <thead>
+
+                    <tr>
+                      
+                        <th>Ad və Soyad</th>
+                        <th>İstifadəçi adı</th>
+                        <th>Rolu</th>
+                        <th>Fəaliyyətlər</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (UserVM item in Model)
+                    {
+                        <tr>
+                            <td>@item.FullName</td>
+                            <td>@item.UserName</td>
+                            <td>@item.Role</td>
+                            <td>
+                                @if (item.IsDeactive)
+                                {
+                                    <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-outline-dark"><img src="~/assets/icons/icons8-close-64.png" style="width:40px;height:40px" alt="password" /></a>
+                                }
+                                else
+                                {
+                                    <a asp-action="Activity" asp-route-id="@item.Id" class="btn btn-outline-light"><img src="~/assets/icons/icons8-done-64.png" style="width:40px;height:40px" alt="password" /></a>
+                                }
+                                <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-outline-success"><img src="~/assets/icons/icons8-update-64.png" style="width:40px;height:40px" alt="password" /></a>
+                                <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-outline-primary"><img src="~/assets/icons/icons8-reading-64.png" style="width:40px;height:40px" alt="password" /></a>
+                                <a asp-action="UpdatePassword" asp-route-id="@item.Id" class="btn btn-outline-warning"><img src="~/assets/icons/icons8-key-64.png" style="width:40px;height:40px" alt="password" /></a>
+                            </td>
+
+                        </tr>
+                    }
+
+
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="~/assets/js/scripts.js"></script>
+    <script src="~/assets/js/datatables-simple-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+
+}

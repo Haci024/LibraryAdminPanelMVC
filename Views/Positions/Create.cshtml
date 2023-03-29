@@ -1,0 +1,31 @@
+﻿@model Position
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="text-center">
+    <h1>Vəzifə Yarat</h1>
+</div>
+<div class="container">
+    <div>
+        <div class="body">
+            <form method="post">
+                <div class="form-group form-float">
+
+                    <label class="form-label">Vəzifənin adı  <span class="font-bold col-pink"></span></label>
+                    <div class="form-line">
+                        <input asp-for="Name" class="form-control">
+                    </div>
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+              
+                
+                <div class="text-center">
+                    <a asp-controller="Positions" asp-action="Index" class="btn btn-primary">Geri qayıt</a>
+                    <button type="submit" class="btn btn-success">Yarat</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>

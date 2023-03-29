@@ -1,0 +1,72 @@
+﻿@model UpdateUserVM
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="fa-align-center">
+    <h1>İstifadəçi Yarat</h1>
+
+</div>
+<div class="container">
+    <div class="body">
+        <form method="post">
+            <div class="form-group form-float">
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+
+
+                <div class="form-group form-float">
+                    <label class="form-label">Ad və Soyadı  <span class="font-bold col-pink"></span></label>
+                    <div class="form-line">
+                        <input asp-for="FullName" class="form-control">
+                    </div>
+                    <span asp-validation-for="FullName" class="text-danger"></span>
+
+                </div>
+                <div class="form-group form-float">
+                    <label class="form-label">İstifadəçi  adı <span class="font-bold col-pink"></span></label>
+                    <div class="form-line">
+                        <input asp-for="UserName" class="form-control">
+                    </div>
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+
+                </div>
+
+                <div class="form-group form-float">
+                    <label class="form-label">Mail adresi <span class="font-bold col-pink"></span></label>
+                    <div class="form-line">
+                        <input asp-for="Email" class="form-control">
+                    </div>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+                </div>
+             
+             
+
+                <br>
+                <div class="text-center">
+                    <a asp-controller="Users" asp-action="Index" class="btn btn-primary">Geri qayıt</a>
+                    <button type="submit" class="btn btn-success">Yarat</button>
+                </div>
+
+            </div>
+
+
+        </form>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+@section Scripts{
+
+    <partial name="_ValidationScriptsPartial" />
+
+}

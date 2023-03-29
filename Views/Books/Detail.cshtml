@@ -1,0 +1,92 @@
+﻿@model Books
+<div class="text-center">
+    <h1>Kitab məlumatları </h1>
+</div>
+<div class="container">
+    <div>
+        <div class="body">
+            <form method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group form-float">
+                            <label class="form-label">Yazıçının şəkili <span class="font-bold col-pink"></span></label>
+                            <img src="~/assets/Image/@Model.BooksImage" style="width:400px;height:400px" />
+                            <span asp-validation-for="@Model.BooksImage" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group form-float">
+
+                            <label class="form-label">Kitabın adı  <span class="font-bold col-pink"></span></label>
+                            <div class="form-line">
+                                <input asp-for="Name" class="form-control">
+                            </div>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group form-float">
+                            <p>
+                                <b>Kitabın Kategoriyası <span class="font-bold col-pink"></span></b>
+                            </p>
+                            <select class="selectpicker" name="CategoryId"  id="CategoryId">
+                                @foreach (Categories category in ViewBag.Categories)
+                                {
+                                    if (Model.BookAuthors.Any(x => x.Books.CategoriesId == category.Id))
+                                    {
+                                        <option hidden value="@category.Id">@category.Name</option>
+                                    }
+
+                                }
+                            </select>
+
+                        </div>
+                        <div class="form-group form-float">
+                            <p>
+                                <b>Yazıçılar <span class="font-bold col-pink"></span></b>
+                            </p>
+                            <select class="selectpicker" multiple name="AuthorsId[]">
+                                @foreach (BookAuthors bookAuthors in Model.BookAuthors)
+                                {
+                                  
+                                <option  value="@bookAuthors.Id">@bookAuthors.Authors.Name @bookAuthors.Authors.Surname </option>
+                                 
+
+                                }
+                            </select>
+
+                        </div>
+                     
+
+
+                        <div class="form-group form-float">
+                            <label class="form-label">Kitabın yaranma tarixi <span class="font-bold col-pink"></span></label>
+                            <div class="form-line">
+                                <input asp-for="CreateTime" class="form-control">
+                            </div>
+                            <span asp-validation-for="CreateTime" class="text-danger"></span>
+
+                        </div>
+                        <div class="form-group form-float">
+                            <label class="form-label">Kitab haqqında <span class="font-bold col-pink"></span></label>
+                            <div class="form-line">
+                                <input asp-for="Description" class="form-control">
+                            </div>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <br>
+                <div class="text-center">
+                    <a asp-controller="Books" asp-action="Index" class="btn btn-primary">Geri qayıt</a>
+                   
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
